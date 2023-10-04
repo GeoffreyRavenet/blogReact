@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react"
+import { createPortal } from "react-dom"
 
 export default function Modal({ children, onClose }) {
   const dialogRef = useRef(null)
@@ -12,9 +13,15 @@ export default function Modal({ children, onClose }) {
     onClose?.()
   }
 
-  return (
-    <dialog ref={dialogRef} onCancel={handleClose} onClose={handleClose}>
+  return createPortal(
+    <dialog
+      style={{ width: "calc(100vw - 2rem)", maxWidth: 600 }}
+      ref={dialogRef}
+      onCancel={handleClose}
+      onClose={handleClose}
+    >
       {children}
-    </dialog>
+    </dialog>,
+    document.body
   )
 }

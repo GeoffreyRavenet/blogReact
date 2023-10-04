@@ -1,10 +1,10 @@
 import Alert from "../components/Alert.jsx"
 import Button from "../components/Button.jsx"
-import Modal from "../components/Modal.jsx"
 import Spinner from "../components/Spinner.jsx"
 import { useDocumentTitle } from "../hooks/useDocumentTitle.js"
 import { useFetch } from "../hooks/useFetch.js"
 import { useToggle } from "../hooks/useToggle.js"
+import EditPostModel from "./Single/EditPostModal.jsx"
 
 export default function Single({ postId }) {
   const {
@@ -33,7 +33,7 @@ export default function Single({ postId }) {
         className="img-fluid img-thumbnail my-3"
       />
       <p>{post.body}</p>
-      {isEditing && <Modal onClose={toggleEditing}>Edition de l'article</Modal>}
+      {isEditing && <EditPostModel post="post" onClose={toggleEditing} />}
       <Button variant="secondary" onClick={toggleEditing}>
         Editer l'article
       </Button>
