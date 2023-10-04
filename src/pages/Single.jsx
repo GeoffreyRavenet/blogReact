@@ -1,8 +1,10 @@
 import Alert from "../components/Alert.jsx"
 import Button from "../components/Button.jsx"
+import Modal from "../components/Modal.jsx"
 import Spinner from "../components/Spinner.jsx"
 import { useDocumentTitle } from "../hooks/useDocumentTitle.js"
 import { useFetch } from "../hooks/useFetch.js"
+import { useToggle } from "../hooks/useToggle.js"
 
 export default function Single({ postId }) {
   const {
@@ -12,6 +14,8 @@ export default function Single({ postId }) {
   } = useFetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
 
   useDocumentTitle(post?.title)
+
+  const [isEditing, toggleEditing] = useToggle(false)
 
   if (loading) {
     return <Spinner />
@@ -29,8 +33,10 @@ export default function Single({ postId }) {
         className="img-fluid img-thumbnail my-3"
       />
       <p>{post.body}</p>
-
-      <Button variant="secondary">Editer l'article</Button>
+      {isEditing && <Modal onClose={toggleEditing}>Edition de l'article</Modal>}
+      <Button variant="secondary" onClick={toggleEditing}>
+        Editer l'article
+      </Button>
       <p>
         <a href={`#post:${post.id + 1}`}>Article suivant</a>
       </p>
