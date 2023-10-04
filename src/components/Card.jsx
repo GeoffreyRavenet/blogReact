@@ -7,6 +7,8 @@
  * @returns {JDX.Element}
  */
 
+import Button from "./Button.jsx"
+
 export default function Card({ image, title, description, href, buttonLabel }) {
   const showButton = !!(href && buttonLabel)
 
@@ -17,9 +19,9 @@ export default function Card({ image, title, description, href, buttonLabel }) {
         {title && <h5 className="card-title">{title}</h5>}
         {description && <p className="card-text">{description}</p>}
         {showButton && (
-          <a href={href} className="btn btn-primary">
+          <Button variant="primary" href={href}>
             {buttonLabel}
-          </a>
+          </Button>
         )}
       </div>
     </div>

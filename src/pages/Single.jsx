@@ -1,4 +1,5 @@
 import Alert from "../components/Alert.jsx"
+import Button from "../components/Button.jsx"
 import Spinner from "../components/Spinner.jsx"
 import { useDocumentTitle } from "../hooks/useDocumentTitle.js"
 import { useFetch } from "../hooks/useFetch.js"
@@ -28,7 +29,11 @@ export default function Single({ postId }) {
         className="img-fluid img-thumbnail my-3"
       />
       <p>{post.body}</p>
-      <a href={`#post:${post.id + 1}`}>Article suivant</a>
+
+      <Button variant="secondary">Editer l'article</Button>
+      <p>
+        <a href={`#post:${post.id + 1}`}>Article suivant</a>
+      </p>
     </>
   )
 }
