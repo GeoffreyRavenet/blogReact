@@ -4,7 +4,7 @@ import Input from "../../components/forms/Input.jsx"
 import Button from "../../components/Button.jsx"
 import Alert from "../../components/Alert.jsx"
 
-export function EditPostModel({ post, onClose, onSave }) {
+export default function EditPostModel({ post, onClose, onSave }) {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
