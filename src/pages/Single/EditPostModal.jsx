@@ -4,19 +4,23 @@ import Input from "../../components/forms/Input.jsx"
 import Button from "../../components/Button.jsx"
 import Alert from "../../components/Alert.jsx"
 
-export default function EditPostModel({ post, onClose, onSave }) {
+export function EditPostModel({ post, onClose, onSave }) {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setError(null)
+    setLoading(true)
     const data = new FormData(e.target)
     fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}`, {
       method: "PUT",
       body: data,
     })
       .then((r) => r.json())
-      .then((r) => onSave(Object.fromEntries(data.entries())))
+      .then((r) => {
+        onSave(Object.fromEntries(data.entries()))
+      })
       .catch((error) => setError(error))
       .finally(() => setLoading(false))
   }
@@ -32,7 +36,7 @@ export default function EditPostModel({ post, onClose, onSave }) {
           <Button disabled={loading} type="button" variable="secondary" onClick={onClose}>
             Annuler
           </Button>
-          <Button disabled={loading} type="submit" onClick={onSave}>
+          <Button disabled={loading} type="submit">
             Sauvegarder
           </Button>
         </div>
