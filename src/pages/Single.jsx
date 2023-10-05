@@ -33,7 +33,7 @@ export default function Single({ postId }) {
         className="img-fluid img-thumbnail my-3"
       />
       <p>{post.body}</p>
-      {isEditing && <EditPostModel post="post" onClose={toggleEditing} />}
+      {isEditing && <EditPostModel post={post} onClose={toggleEditing} />}
       <Button variant="secondary" onClick={toggleEditing}>
         Editer l'article
       </Button>
